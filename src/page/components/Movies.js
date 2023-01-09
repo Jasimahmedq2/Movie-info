@@ -18,8 +18,9 @@ const [movies, setMovies] = movie;
         {
           movies?.map(movie => {
             return (
-              <SwiperSlide>
-                <MovieList movie={movie} />
+              <SwiperSlide >
+                <MovieList key={movie?.imdbID
+} movie={movie} />
               </SwiperSlide>
             )
           })

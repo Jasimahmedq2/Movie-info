@@ -12,7 +12,6 @@ const Home = () => {
   const [search, setSearch] = useState('')
   const [liked, setLiked] = useState([])
 
-  console.log("liked", liked)
   const loadMoviesData = async (search) => {
     const { data } = await axios.get(`https://www.omdbapi.com/?s=${search}&apikey=7144fcb3`)
     if (data.Search) {
