@@ -6,7 +6,8 @@ import MovieList from './MovieList';
 import { MoviesContext } from '../Home/Home';
 
 const Movies = () => {
-const movies = useContext(MoviesContext)
+const {movie} = useContext(MoviesContext)
+const [movies, setMovies] = movie;
   return (
     <div>
       <Swiper
@@ -15,7 +16,7 @@ const movies = useContext(MoviesContext)
       >
 
         {
-          movies.map(movie => {
+          movies?.map(movie => {
             return (
               <SwiperSlide>
                 <MovieList movie={movie} />

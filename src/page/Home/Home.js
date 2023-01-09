@@ -8,17 +8,24 @@ export const MoviesContext = createContext()
 
 const Home = () => {
   const [movies, setMovies] = useState([])
-  const loadMoviesData = async () => {
-    const { data } = await axios.get(`https://www.omdbapi.com/?s=adventure&apikey=7144fcb3`)
-    setMovies(data.Search)
+  const [search, setSearch] = useState('')
+
+  console.log("search", search)
+  const loadMoviesData = async (search) => {
+    const { data } = await axios.get(`https://www.omdbapi.com/?s=${search}&apikey=7144fcb3`)
+    if(data.Search){
+      setMovies(data.Search)
+    }
   }
 
   useEffect(() => {
-    loadMoviesData()
-  }, [])
+    loadMoviesData(search)
+  }, [search])
 
   return (
-    <MoviesContext.Provider value={movies}>
+    <MoviesContext.Provider 
+    value={{movie: [movies, setMovies],
+     searchData: [search, setSearch]}}>
       <Searchbar />
       <Movies />
     </MoviesContext.Provider>
