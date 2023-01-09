@@ -11,7 +11,7 @@ const [movies, setMovies] = movie;
   return (
     <div>
       <Swiper
-        spaceBetween={30}
+        spaceBetween={50}
         slidesPerView={3}
       >
 

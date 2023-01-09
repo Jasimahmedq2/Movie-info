@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { createContext, useEffect, useState } from 'react';
+import Addliked from '../components/Addliked';
 import Movies from '../components/Movies';
 import Searchbar from '../components/Searchbar';
 
@@ -9,11 +10,12 @@ export const MoviesContext = createContext()
 const Home = () => {
   const [movies, setMovies] = useState([])
   const [search, setSearch] = useState('')
+  const [liked, setLiked] = useState([])
 
-  console.log("search", search)
+  console.log("liked", liked)
   const loadMoviesData = async (search) => {
     const { data } = await axios.get(`https://www.omdbapi.com/?s=${search}&apikey=7144fcb3`)
-    if(data.Search){
+    if (data.Search) {
       setMovies(data.Search)
     }
   }
@@ -23,14 +25,16 @@ const Home = () => {
   }, [search])
 
   return (
-    <MoviesContext.Provider 
-    value={{movie: [movies, setMovies],
-     searchData: [search, setSearch]}}>
+    <MoviesContext.Provider
+      value={{
+        movie: [movies, setMovies],
+        searchData: [search, setSearch],
+        likedMovies: [liked, setLiked]
+      }}>
       <Searchbar />
       <Movies />
+      <Addliked />
     </MoviesContext.Provider>
-
-
   );
 };
 
