@@ -18,7 +18,7 @@ const MovieList = ({ movie }) => {
     saveToLocalStorage(currentMovies)
   }
   const dynamicPage = (id) => {
-      navigate(`/info/${id}`)
+    navigate(`/info/${id}`)
   }
 
 
@@ -26,12 +26,14 @@ const MovieList = ({ movie }) => {
   return (
     <div >
       <img src={movie?.Poster} alt="movie" />
-      <button
-        className='btn btn-primary'
-        onClick={() => handleLikedMovies(movie)}>like</button>
-      <button
-        onClick={() => dynamicPage(movie?.imdbID)}
-        className='btn btn-secondary'>see more</button>
+      <div className='flex items-center space-x-4'>
+        <button
+          className='btn btn-primary'
+          onClick={() => handleLikedMovies(movie)}>like</button>
+        <button
+          onClick={() => dynamicPage(movie?.imdbID)}
+          className='btn btn-secondary'>see more</button>
+      </div>
     </div>
   );
 };

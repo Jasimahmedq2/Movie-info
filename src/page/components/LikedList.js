@@ -1,11 +1,13 @@
 import React, { useContext } from 'react';
+import { useNavigate } from 'react-router';
 import { MoviesContext } from '../Home/Home';
 
 const LikedList = ({ like }) => {
-  const {likedMovies} = useContext(MoviesContext)
+  const navigate = useNavigate()
+  const { likedMovies } = useContext(MoviesContext)
   const [liked, setLiked] = likedMovies;
 
-console.log("liked :", liked)
+  console.log("liked :", liked)
 
   const removeItem = (like) => {
     const newMovie = liked.filter(movie => movie.imdbID !== like.imdbID)
@@ -16,7 +18,13 @@ console.log("liked :", liked)
   return (
     <div >
       <img src={like?.Poster} alt="movie" />
-      <button onClick={() => removeItem(like)} className='text-xl text-red-400 btn btn-primary'>remove</button>
+      <div className='flex items-center space-x-4'>
+        <button
+          onClick={() => removeItem(like)} className='text-xl text-red-400 btn btn-primary'>remove</button>
+        <button
+          onClick={() => navigate(`/info/${like.imdbID}`)}
+          className='btn btn-secondary'>see more</button>
+      </div>
     </div>
   );
 };
