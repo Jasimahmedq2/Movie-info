@@ -1,12 +1,11 @@
 import React, { useContext, useEffect } from 'react';
-import { json, useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
 import { MoviesContext } from '../Home/Home';
 
 const MovieList = ({ movie }) => {
   const navigate = useNavigate()
   const { likedMovies } = useContext(MoviesContext)
   const [liked, setLiked] = likedMovies;
-  console.log(liked)
 
   const saveToLocalStorage = (items) => {
     localStorage.setItem('liked-movies', JSON.stringify(items))
@@ -24,7 +23,7 @@ const MovieList = ({ movie }) => {
 
 
   return (
-    <div >
+    <div>
       <img src={movie?.Poster} alt="movie" />
       <div className='flex items-center space-x-4'>
         <button
